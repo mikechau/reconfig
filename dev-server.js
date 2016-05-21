@@ -11,7 +11,7 @@ new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
   hot: true,
   historyApiFallback: {
-    index: './static/dev/index.html'
+    index: './static/dev/index.html',
   },
   stats: {
     colors: true,
@@ -21,7 +21,7 @@ new WebpackDevServer(webpack(config), {
     timings: true,
     chunks: false,
     chunkModules: false,
-    modules: false
+    modules: false,
   }
 }).listen(PORT, HOST, (err) => {
   if (err) {

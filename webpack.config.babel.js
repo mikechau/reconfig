@@ -9,8 +9,8 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 export const baseConfig = {
   entry: {
     application: [
-      path.resolve(__dirname, 'src/index.js')
-    ]
+      path.resolve(__dirname, 'src/index.js'),
+    ],
   },
 
   output: {
@@ -19,19 +19,19 @@ export const baseConfig = {
     filename: '[name].js',
     chunkFilename: 'chunk-[id].name.js',
     sourceMapFilename: '[file].map',
-    pathInfo: true
+    pathInfo: true,
   },
 
   resolve: {
     root: path.join(__dirname, 'src'),
     extensions: ['', '.js', '.jsx'],
     alias: {
-      app: path.join(__dirname, 'src')
-    }
+      app: path.join(__dirname, 'src'),
+    },
   },
 
   resolveLoader: {
-    root: path.join(__dirname, 'node_modules')
+    root: path.join(__dirname, 'node_modules'),
   },
 
   module: {
@@ -43,15 +43,15 @@ export const baseConfig = {
         exclude: /node_modules/,
         loader: 'babel',
         query: {
-          cacheDirectory: NODE_ENV !== 'production'
-        }
+          cacheDirectory: NODE_ENV !== 'production',
+        },
       },
 
       {
         test: /\.json$/,
-        loader: 'json'
-      }
-    ]
+        loader: 'json',
+      },
+    ],
   },
 
   plugins: [
@@ -59,10 +59,10 @@ export const baseConfig = {
 
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify(NODE_ENV)
-      }
+        NODE_ENV: JSON.stringify(NODE_ENV),
+      },
     })
-  ]
+  ],
 };
 
 export const developmentConfig = merge.smart({
@@ -71,14 +71,14 @@ export const developmentConfig = merge.smart({
       'react-hot-loader/patch',
       `webpack-dev-server/client?http://${HOST}:${PORT}`,
       'webpack/hot/only-dev-server',
-    ]
+    ],
   }
 }, baseConfig, {
   devtool: 'cheap-module-eval-source-map',
   debug: true,
   plugins: [
     new webpack.HotModuleReplacementPlugin()
-  ]
+  ],
 });
 
 export const testConfig = merge.smart(baseConfig, {});
