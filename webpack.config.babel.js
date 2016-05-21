@@ -1,5 +1,10 @@
 import path from 'path';
 import webpack from 'webpack';
+import merge from 'webpack-merge';
+
+const HOST = process.env.WEBPACK_HOST || 'localhost';
+const PORT = process.env.WEBPACK_PORT || '4000';
+const NODE_ENV = process.env.NODE_ENV || 'development';
 
 export const baseConfig = {
   entry: {
@@ -38,7 +43,7 @@ export const baseConfig = {
         exclude: /node_modules/,
         loader: 'babel',
         query: {
-          cacheDirectory: process.env.NODE_ENV !== 'production'
+          cacheDirectory: NODE_ENV !== 'production'
         }
       },
 
@@ -60,17 +65,28 @@ export const baseConfig = {
   ]
 };
 
-export const developmentConfig = merge.smart(baseConfig, {
+export const developmentConfig = merge.smart({
+  entry: {
+    application: [
+      'react-hot-loader/patch',
+      `webpack-dev-server/client?http://${HOST}:${PORT}`,
+      'webpack/hot/only-dev-server',
+    ]
+  }
+}, baseConfig, {
   devtool: 'cheap-module-eval-source-map',
-  debug: true
+  debug: true,
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
 });
 
 export const testConfig = merge.smart(baseConfig, {});
 
 export const productionConfig = merge.smart(baseConfig, {});
 
-export default function() {
-  switch (process.env.NODE_ENV.toLowerCase()) {
+export default (function() {
+  switch (NODE_ENV.toLowerCase()) {
     case 'development':
       return developmentConfig;
     case 'test':
@@ -78,6 +94,7 @@ export default function() {
     case 'production':
       return productionConfig;
     default:
-      throw 'Invalid NODE_ENV!'
+      throw 'Invalid NODE_ENV!';
   }
-}
+})();
+
