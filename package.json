@@ -7,8 +7,23 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "babel-node dev-server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikechau/reconfig.git"
+  },
+  "keywordS": [
+    "webpack",
+    "eslint",
+    "configuration",
+    "react",
+    "babel",
+    "karma"
+  ],
   "author": "Mike Chau",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mikechau/reconfig/issues"
+  },
   "dependencies": {
     "babel-cli": "^6.9.0",
     "babel-core": "^6.9.0",
