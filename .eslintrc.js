@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = (function() {
+module.exports = ((function() {
   switch (process.env.NODE_ENV) {
     case 'development':
       return ({
@@ -11,5 +11,5 @@ module.exports = (function() {
         extends: 'eslint-config-mc'
       });
   }
-})();
+})());
 

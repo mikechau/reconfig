@@ -1,5 +1,5 @@
 /* eslint no-console: 0 */
-import path from 'path';
+
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import config from './webpack.config.babel';
@@ -22,7 +22,7 @@ new WebpackDevServer(webpack(config), {
     chunks: false,
     chunkModules: false,
     modules: false,
-  }
+  },
 }).listen(PORT, HOST, (err) => {
   if (err) {
     console.log(err);

@@ -61,7 +61,7 @@ export const baseConfig = {
       'process.env': {
         NODE_ENV: JSON.stringify(NODE_ENV),
       },
-    })
+    }),
   ],
 };
 
@@ -72,12 +72,12 @@ export const developmentConfig = merge.smart({
       `webpack-dev-server/client?http://${HOST}:${PORT}`,
       'webpack/hot/only-dev-server',
     ],
-  }
+  },
 }, baseConfig, {
   devtool: 'cheap-module-eval-source-map',
   debug: true,
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
   ],
 });
 
@@ -85,7 +85,7 @@ export const testConfig = merge.smart(baseConfig, {});
 
 export const productionConfig = merge.smart(baseConfig, {});
 
-export default (function() {
+export default ((() => {
   switch (NODE_ENV.toLowerCase()) {
     case 'development':
       return developmentConfig;
@@ -94,7 +94,7 @@ export default (function() {
     case 'production':
       return productionConfig;
     default:
-      throw 'Invalid NODE_ENV!';
+      throw new Error('Invalid NODE_ENV!');
   }
-})();
+})());
 

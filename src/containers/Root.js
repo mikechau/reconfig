@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class Root extends Component {
-  render() {
-    return (
-      <div>hello world</div>
-    );
-  }
+export default function Root() {
+  return (
+    <div>hello world</div>
+  );
 }
