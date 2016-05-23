@@ -35,8 +35,6 @@ export const baseConfig = {
   },
 
   module: {
-    preLoaders: [],
-
     loaders: [
       {
         test: /\.jsx?$/,
@@ -75,10 +73,29 @@ export const developmentConfig = merge.smart({
   },
 }, baseConfig, {
   devtool: 'cheap-module-eval-source-map',
+
   debug: true,
+
+  module: {
+    preLoaders: [
+      {
+        test: /.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+      },
+    ],
+  },
+
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
   ],
+
+  eslint: {
+    emitError: false,
+    emitWarning: false,
+    failOnWarning: false,
+    failOnError: false,
+  },
 });
 
 export const testConfig = merge.smart(baseConfig, {});
