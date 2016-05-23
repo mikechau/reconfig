@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "babel-node dev-server.js"
+    "start": "babel-node dev-server.js",
+    "lint": "eslint ./src ./test *.js"
   },
   "repository": {
     "type": "git",
@@ -51,6 +52,11 @@
     "webpack-merge": "^0.12.0"
   },
   "devDependencies": {
+    "eslint": "^2.10.2",
+    "eslint-config-mc": "^0.2.1",
+    "eslint-plugin-import": "^1.8.0",
+    "eslint-plugin-jsx-a11y": "^1.2.2",
+    "eslint-plugin-react": "^5.1.1",
     "webpack-dev-server": "^1.14.1"
   },
   "engines": {
