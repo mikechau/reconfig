@@ -3,7 +3,7 @@ import test from 'ava';
 import { shallow, mount } from 'enzyme';
 import Root from 'app/containers/Root.js';
 
-test('test', (t) => {
+test('renders hello world', (t) => {
   const actual = shallow(<Root />);
   const child = <div>hello world</div>;
 

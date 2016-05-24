@@ -1,7 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
-
 var path = require('path');
 var webpack = require('webpack');
 var merge = require('webpack-merge');
@@ -45,7 +43,7 @@ var baseConfig = {
         exclude: /node_modules/,
         loader: 'babel',
         query: {
-          cacheDirectory: NODE_ENV !== 'production',
+          cacheDirectory: NODE_ENV !== 'production'
         }
       },
 
@@ -74,7 +72,7 @@ var developmentConfig = merge.smart({
       `webpack-dev-server/client?http://${HOST}:${PORT}`,
       'webpack/hot/only-dev-server'
     ]
-  },
+  }
 }, baseConfig, {
   devtool: 'cheap-module-eval-source-map',
 
@@ -102,10 +100,16 @@ var developmentConfig = merge.smart({
   }
 });
 
-var testConfig = _.merge({
-  module: baseConfig.module,
-  plugins: baseConfig.plugins
-}, {});
+var testConfig = {
+  module: {
+    loaders: [
+      {
+        test: /\.json$/,
+        loader: 'json'
+      }
+    ]
+  }
+};
 
 var productionConfig = merge.smart(baseConfig, {});
 
