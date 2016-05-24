@@ -2,7 +2,7 @@
 
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
-import config from './webpack.config.babel';
+import config from './webpack.config';
 
 const HOST = process.env.WEBPACK_HOST || 'localhost';
 const PORT = process.env.WEBPACK_PORT || '4000';
