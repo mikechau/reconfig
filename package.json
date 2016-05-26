@@ -111,6 +111,10 @@
               "expose": "app"
             },
             {
+              "src": "./src/components",
+              "expose": "components"
+            },
+            {
               "src": "./src/assets",
               "expose": "assets"
             }
