@@ -3,6 +3,8 @@
 var path = require('path');
 var webpack = require('webpack');
 var merge = require('webpack-merge');
+var autoprefixer = require('autoprefixer');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var HOST = process.env.WEBPACK_HOST || 'localhost';
 var PORT = process.env.WEBPACK_PORT || '4000';
@@ -29,6 +31,7 @@ var baseConfig = {
     extensions: ['', '.js', '.jsx'],
     alias: {
       app: path.join(__dirname, 'src'),
+      assets: path.join(__dirname, 'src', 'assets')
     }
   },
 
@@ -50,7 +53,45 @@ var baseConfig = {
       {
         test: /\.json$/,
         loader: 'json'
-      }
+      },
+
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract(['style', 'css?sourceMap&importLoaders=1', 'postcss'])
+      },
+
+      {
+        test: /\.less$/,
+        loader: ExtractTextPlugin.extract(['style', 'css?sourceMap&importLoaders=2', 'postcss', 'less?sourceMap'])
+      },
+
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url',
+        query: {
+          name: 'fonts/[name].[ext]',
+          limit: 8192,
+          mimetype: 'application/font-woff'
+        }
+      },
+
+      {
+        test: /\.(eot|svg|ttf)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url',
+        query: {
+          name: 'fonts/[name].[ext]',
+          limit: 8192
+        }
+      },
+
+      {
+        test: /\.(jpe?g|png|gif|ico)$/,
+        loader: 'url',
+        query: {
+          name: 'images/[name].[ext]',
+          limit: 8192
+        }
+      },
     ]
   },
 
@@ -109,7 +150,7 @@ var developmentConfig = merge.smart({
     emitError: false,
     emitWarning: false,
     failOnWarning: false,
-    failOnError: false,
+    failOnError: false
   }
 });
 
