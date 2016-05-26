@@ -111,6 +111,10 @@
               "expose": "app"
             },
             {
+              "src": "./src/constants",
+              "expose": "constants"
+            },
+            {
               "src": "./src/components",
               "expose": "components"
             },

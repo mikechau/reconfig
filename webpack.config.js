@@ -30,9 +30,7 @@ var baseConfig = {
     root: path.join(__dirname, 'src'),
     extensions: ['', '.js', '.jsx'],
     alias: {
-      app: path.join(__dirname, 'src'),
-      components: path.join(__dirname, 'src', 'components'),
-      assets: path.join(__dirname, 'src', 'assets')
+      app: path.join(__dirname, 'src')
     }
   },
 
