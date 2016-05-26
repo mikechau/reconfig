@@ -1,6 +1,6 @@
 import React from 'react';
 import test from 'ava';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import Root from 'app/containers/Root.js';
 
 test('renders hello world', (t) => {

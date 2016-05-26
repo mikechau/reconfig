@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "NODE_ENV=test BABEL_DISABLE_CACHE=1 WEBPACK_CWD=`pwd` ava --verbose",
-    "start": "babel-node dev-server.js",
+    "start": "NODE_ENV=development babel-node dev-server.js",
     "lint": "eslint ./src ./test"
   },
   "repository": {
@@ -18,6 +18,7 @@
     "configuration",
     "react",
     "babel",
+    "boilerplate",
     "karma"
   ],
   "author": "Mike Chau",
@@ -26,6 +27,7 @@
     "url": "https://github.com/mikechau/reconfig/issues"
   },
   "dependencies": {
+    "autoprefixer": "^6.3.6",
     "babel-cli": "^6.9.0",
     "babel-core": "^6.9.0",
     "babel-loader": "^6.2.4",
@@ -41,14 +43,25 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-2": "^6.5.0",
     "babel-runtime": "^6.9.0",
+    "bootstrap": "^3.3.6",
+    "bootswatch": "^3.3.6",
     "classnames": "^2.2.5",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.8.5",
+    "font-awesome": "^4.6.3",
     "json-loader": "^0.5.4",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
     "lodash": "^4.12.0",
+    "postcss-loader": "^0.9.1",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-hot-loader": "^3.0.0-beta.2",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.0",
     "webpack-merge": "^0.12.0"
   },
@@ -56,10 +69,13 @@
     "ava": "^0.14.0",
     "babel-plugin-module-alias": "^1.4.0",
     "babel-plugin-rewire": "^1.0.0-rc-3",
+    "babel-plugin-transform-define": "^1.0.1",
+    "babel-plugin-webpack-loaders": "^0.5.0",
     "enzyme": "^2.3.0",
     "eslint": "^2.10.2",
     "eslint-config-mc": "^0.2.1",
     "eslint-import-resolver-babel-module-alias": "^1.0.4",
+    "eslint-import-resolver-webpack": "^0.2.5",
     "eslint-loader": "^1.3.0",
     "eslint-plugin-import": "^1.8.0",
     "eslint-plugin-jsx-a11y": "^1.2.2",
@@ -78,13 +94,30 @@
       "plugins": [
         "rewire",
         [
-          "module-alias", [
-            { "src": "./src", "expose": "app" }
+          "transform-define", {
+            "process.env.NODE_ENV": "test"
+          }
+        ],
+        [
+          "module-alias",
+          [
+            {
+              "src": "./src",
+              "expose": "app"
+            },
+            {
+              "src": "./src/assets",
+              "expose": "assets"
+            }
           ]
         ],
         [
-          "webpack-loaders", [
-            { "config": "${WEBPACK_CWD}/webpack.config.js", "verbose": true }
+          "webpack-loaders",
+          [
+            {
+              "config": "${WEBPACK_CWD}/webpack.config.js",
+              "verbose": true
+            }
           ]
         ]
       ]
