@@ -103,6 +103,10 @@
             {
               "src": "./src",
               "expose": "app"
+            },
+            {
+              "src": "./src/assets",
+              "expose": "assets"
             }
           ]
         ],
