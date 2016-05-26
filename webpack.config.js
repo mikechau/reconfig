@@ -61,15 +61,24 @@ var baseConfig = {
       'process.env': {
         NODE_ENV: JSON.stringify(NODE_ENV),
       }
-    })
-  ]
+    }),
+
+    new webpack.optimize.OccurenceOrderPlugin(),
+
+    new ExtractTextPlugin('[name]-[contenthash].css', {
+      allChunks: true,
+      disable: NODE_ENV !== 'production'
+    }),
+  ],
+
+  postcss: [autoprefixer]
 };
 
 var developmentConfig = merge.smart({
   entry: {
     application: [
       'react-hot-loader/patch',
-      `webpack-dev-server/client?http://${HOST}:${PORT}`,
+      'webpack-dev-server/client?http://' + HOST + ':' + PORT,
       'webpack/hot/only-dev-server'
     ]
   }
@@ -77,6 +86,10 @@ var developmentConfig = merge.smart({
   devtool: 'cheap-module-eval-source-map',
 
   debug: true,
+
+  output: {
+    publicPath: 'http://' + HOST + ':' + PORT + '/assets/'
+  },
 
   module: {
     preLoaders: [
@@ -111,7 +124,7 @@ var testConfig = {
   }
 };
 
-var productionConfig = merge.smart(baseConfig, {});
+var productionConfig = merge.smart({}, baseConfig);
 
 module.exports = ((function() {
   switch (NODE_ENV.toLowerCase()) {
