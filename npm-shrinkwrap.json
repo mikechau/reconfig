@@ -3732,6 +3732,11 @@
       "from": "react-router@latest",
       "resolved": "https://registry.npmjs.org/react-router/-/react-router-2.4.1.tgz"
     },
+    "react-router-redux": {
+      "version": "4.0.4",
+      "from": "react-router-redux@latest",
+      "resolved": "https://registry.npmjs.org/react-router-redux/-/react-router-redux-4.0.4.tgz"
+    },
     "read-all-stream": {
       "version": "3.1.0",
       "from": "read-all-stream@>=3.0.0 <4.0.0",
