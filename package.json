@@ -18,6 +18,7 @@
     "configuration",
     "react",
     "babel",
+    "boilerplate",
     "karma"
   ],
   "author": "Mike Chau",
