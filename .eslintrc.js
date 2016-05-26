@@ -1,10 +1,12 @@
 'use strict';
 
-module.exports = ((function() {
+var merge = require('lodash/merge');
+
+var config = ((function() {
   switch (process.env.NODE_ENV) {
     case 'development':
       return ({
-        extends: 'eslint-config-mc/warning'
+        extends: 'eslint-config-mc/warning',
       });
     default:
       return ({
@@ -12,3 +14,14 @@ module.exports = ((function() {
       });
   }
 })());
+
+module.exports = merge({}, config, {
+  settings: {
+    'import/resolver': {
+      webpack: {
+        config: 'webpack.config.js'
+      }
+    }
+  }
+});
+
